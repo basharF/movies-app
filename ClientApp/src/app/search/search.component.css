@@ -1,0 +1,19 @@
+
+.searchbox {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.searchbox input[type=text] {
+  font-size: 17px;
+  width: 100%;
+  padding: 3px;
+}
+
+.searchbox table {
+  background-color: white;
+  margin-top: 5px;
+  font-size: 17px;
+  width: 100%;
+  padding: 10px;
+}

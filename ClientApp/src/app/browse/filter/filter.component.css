@@ -1,0 +1,33 @@
+/* Add a black background color to the top navigation bar */
+.topnav {
+  overflow: visible;
+
+    margin-top: 30px; 
+    margin-bottom: 30px; 
+    width: 100%;
+
+  }
+  .searchbox{
+    width: 100%;
+    margin-left: 30px;
+    position:relative;
+  }
+  .searchbox input[type=text] {
+    float: right;
+    font-size: 17px;
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+  }
+
+  .searchbox table {
+    background-color: white;
+    margin-top: 45px;
+    position: absolute;
+    float: right;
+    font-size: 17px;
+    width: 100%;
+    padding: 10px;
+  }
+
+  

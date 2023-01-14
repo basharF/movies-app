@@ -1,0 +1,30 @@
+<h1 id="tableLabel">Browse top rated movies</h1>
+
+<!-- <p *ngIf="!movies?.length"><em>Loading...</em></p> -->
+
+<app-filter></app-filter>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="filterdMovies.length">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Title</th>
+      <th>Genre</th>
+      <th>Rate</th>
+      <th>Voters#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let movie of filterdMovies; let i =index">
+      <td>{{ i+1 }}</td>
+      <td>{{ movie.movieTitle }}</td>
+      <td>{{ movie.movieGenres }}</td>
+      <td>{{ movie.movieRating }}</td>
+      <td>{{ movie.movieNumberOfVoters }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+

@@ -1,0 +1,19 @@
+<div class="searchbox">
+  <input #searchbox type="text" placeholder="Search.." (input)="applyFilter(searchbox.value)"
+    (keyup.enter)="getMoviesByText(searchbox.value)">
+  <table class='table' aria-labelledby="tableLabel" *ngIf="filterdMovies.length">
+    <tbody>
+      <tr style="width: 100%;" *ngFor="let movie of filterdMovies">
+        <td><a routerLink="/search" (click)="getMovieById(movie.movieId)">{{ movie.movieTitle }}</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <ng-container *ngFor="let m of filterdMovieCards; let i = index;">
+    <div class="col-md-4">
+      <app-movie-card [movie]="m"></app-movie-card>
+    </div>
+    <div *ngIf="(i+1) % 3 === 0" class="w-100"></div>
+  </ng-container>
+</div>

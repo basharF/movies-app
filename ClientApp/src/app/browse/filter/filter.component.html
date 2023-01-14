@@ -1,0 +1,21 @@
+<!-- <a class="list-group-item list-group-item-action" (click)="toggle()">Filter <i class="fas fa-arrow-down"></i></a>
+
+<div class="sticky-top" [ngClass]="{'collapse': tog}">
+    <div class="list-group" id="list-tab" role="tablist" *ngIf="genres$ | async as genres">
+        <a class="list-group-item list-group-item-action" [class.active]="!genre" routerLink="/browse">All
+            Categories</a>
+
+        <a *ngFor="let g of genres" routerLink="/browse" class="list-group-item list-group-item-action"
+            [class.active]="genre === g.genreName ">
+            {{ g.genreName}}
+        </a>
+    </div>
+</div> -->
+
+<mat-button-toggle-group class="topnav" *ngIf="genres$ | async as genres" name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle routerLink="/browse">All</mat-button-toggle>
+    <mat-button-toggle *ngFor="let g of genres" routerLink="/browse" [queryParams]="{ genre: g.genreName }" >{{ g.genreName}}</mat-button-toggle>
+</mat-button-toggle-group>
+
+
+
