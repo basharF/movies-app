@@ -9,8 +9,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,18 +24,18 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { SearchComponent } from './search/search.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import {MatCardModule} from '@angular/material/card';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     BrowseComponent,
     FilterComponent,
     SearchComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    RecommendationsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -55,10 +53,9 @@ import {MatCardModule} from '@angular/material/card';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'browse', component: BrowseComponent },
-      { path: 'search', component: SearchComponent }
+      { path: 'search', component: SearchComponent },
+      { path: 'recommendations', component: RecommendationsComponent }
     ])
   ],
   providers: [MovieService],

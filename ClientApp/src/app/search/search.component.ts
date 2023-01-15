@@ -17,11 +17,6 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.movieSevice.getAllMovies().subscribe(data => {
       this.movies = data;
-
-      // this.route.queryParams.subscribe(param => {
-      //   this.searchText = param['searchText'];
-      //   this.applyFilter(null);
-      // });
     });
   }
 

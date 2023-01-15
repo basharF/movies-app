@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using movies_app.data.MovieContext;
 using Newtonsoft.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.EntityFrameworkCore;
 
 namespace movies_app.Controllers
 {
@@ -33,8 +34,7 @@ namespace movies_app.Controllers
         [HttpGet]
         public string getAllMovies()
         {
-            //string query = @"SELECT MOVIE_ID, MOVIE_TITLE FROM MOVIES WHERE MOVIE_ID = 1";
-            var movies =  _context.Movies;
+            var movies = _context.Movies;
             return JsonConvert.SerializeObject(movies);
         }
 
@@ -43,13 +43,7 @@ namespace movies_app.Controllers
         [HttpGet("{id}/byId")]
         public string getMovieById(int id)
         {
-            //string query = @"SELECT MOVIE_ID, MOVIE_TITLE FROM MOVIES WHERE MOVIE_ID = 1";
-            var movie =  _context.Movies.Where(m => m.movieId == id);
-            // var movies = (from a in _context.Movies
-            //    join c in _context.Rates on a.movieId equals c.movieId
-            //    where a.movieId == id
-            //    select a.movieTitle, )
-            //   .SingleOrDefault();
+            var movie = _context.Movies.Where(m => m.movieId == id);
             return JsonConvert.SerializeObject(movie);
         }
 
@@ -57,59 +51,52 @@ namespace movies_app.Controllers
         [HttpGet("{text}/byText")]
         public string getMovieByText(string text)
         {
-            //string query = @"SELECT MOVIE_ID, MOVIE_TITLE FROM MOVIES WHERE MOVIE_ID = 1";
-            var movie =  _context.Movies.Where(m => m.movieTitle.Contains(text));
-            // var movies = (from a in _context.Movies
-            //    join c in _context.Rates on a.movieId equals c.movieId
-            //    where a.movieId == id
-            //    select a.movieTitle, )
-            //   .SingleOrDefault();
+            var movie = _context.Movies.Where(m => m.movieTitle.Contains(text));
             return JsonConvert.SerializeObject(movie);
         }
-
-
-
-        // public IActionResult Index()
-        // {
-        //     return View();
-        // }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View("Error!");
         }
+
+        
+
+
     }
 }
 
 
-            // string query = @"SELECT TOP(5) MOVIE_ID, MOVIE_TITLE, MOVIE_GENRES,
-            //                 ISNULL(ROUND((CONVERT(float,COUNT(R.RATING_USER_ID))/(COUNT(R.RATING_USER_ID)+25000)) * AVG(RATING) + (25000.0/(COUNT(R.RATING_USER_ID)+25000)) *3.0, 1), 0) WEIGHTED_AVERAGE_RATING,
-            //                 ISNULL(COUNT(R.RATING_USER_ID), 0) NUMBER_OF_VOTERS
-            //                 FROM MOVIES M
-            //                 LEFT JOIN RATINGS R ON R.RATING_MOVIE_ID = M.MOVIE_ID
-            //                 WHERE MOVIE_TITLE LIKE '%shaw%'
-            //                 GROUP BY MOVIE_ID, MOVIE_TITLE, MOVIE_GENRES
-            //                 ORDER BY (CONVERT(float,COUNT(R.RATING_USER_ID))/(COUNT(R.RATING_USER_ID)+25000)) * AVG(RATING) + (25000.0/(COUNT(R.RATING_USER_ID)+25000)) *3.0 DESC";
 
 
-
-        //             [EnableCors("MyPolicy")]
+        // [EnableCors("MyPolicy")]
         // [HttpGet]
         // public string Get()
         // {
-        //     string query = @"SELECT MOVIE_ID, MOVIE_TITLE FROM MOVIES";
+        //     string query = @"SELECT TOP(1000) MOVIE_ID, MOVIE_TITLE, MOVIE_GENRES,
+        //                     ISNULL(ROUND((CONVERT(float,COUNT(R.RATING_USER_ID))/(COUNT(R.RATING_USER_ID)+25000)) * AVG(RATING) + (25000.0/(COUNT(R.RATING_USER_ID)+25000)) *3.0, 1), 0) WEIGHTED_AVERAGE_RATING,
+        //                     ISNULL(COUNT(R.RATING_USER_ID), 0) NUMBER_OF_VOTERS
+        //                     FROM MOVIES M
+        //                     LEFT JOIN RATINGS R ON R.RATING_MOVIE_ID = M.MOVIE_ID
+        //                     GROUP BY MOVIE_ID, MOVIE_TITLE, MOVIE_GENRES
+        //                     ORDER BY (CONVERT(float,COUNT(R.RATING_USER_ID))/(COUNT(R.RATING_USER_ID)+25000)) * AVG(RATING) + (25000.0/(COUNT(R.RATING_USER_ID)+25000)) *3.0 DESC";
         //     DataTable dt = new DataTable();
         //     string sqlDataSource = _configuration.GetConnectionString("MOVIES_LENS_CONNECTION");
         //     SqlDataAdapter da = new SqlDataAdapter(query, sqlDataSource);
         //     da.Fill(dt);
         //     List<Movie> moviesList = new List<Movie>();
-        //     if(dt.Rows.Count > 0){
-        //         for(int i=0; i<dt.Rows.Count; i++){
-        //            Movie movie = new Movie();
-        //            movie.movieId = Convert.ToInt32(dt.Rows[i]["MOVIE_ID"]); 
-        //            movie.movieTitle = Convert.ToString(dt.Rows[i]["MOVIE_TITLE"]);
-        //            moviesList.Add(movie);
+        //     if (dt.Rows.Count > 0)
+        //     {
+        //         for (int i = 0; i < dt.Rows.Count; i++)
+        //         {
+        //             Movie movie = new Movie();
+        //             movie.movieId = Convert.ToInt32(dt.Rows[i]["MOVIE_ID"]);
+        //             movie.movieTitle = Convert.ToString(dt.Rows[i]["MOVIE_TITLE"]);
+        //             movie.movieGenres = Convert.ToString(dt.Rows[i]["MOVIE_GENRES"]);
+        //             movie.movieRating = Convert.ToDouble(dt.Rows[i]["WEIGHTED_AVERAGE_RATING"]);
+        //             movie.movieNumberOfVoters = Convert.ToInt32(dt.Rows[i]["NUMBER_OF_VOTERS"]);
+        //             moviesList.Add(movie);
         //         }
         //     }
 

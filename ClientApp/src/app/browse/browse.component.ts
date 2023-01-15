@@ -31,8 +31,8 @@ export class BrowseComponent implements OnInit {
   }
 
   applyFilter(){
-    this.filterdMovies = (this.genre)? this.movies.filter(m => m.movieGenres.includes(this.genre)) :
-          this.movies;
+    this.filterdMovies = (this.genre)? this.movies.filter(m => m.movieGenres.includes(this.genre)).slice(0,100) :
+          this.movies.slice(0,100);
   }
 
   // refreshStudentList() {

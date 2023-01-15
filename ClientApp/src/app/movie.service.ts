@@ -42,4 +42,8 @@ export class MovieService {
     return this.http.get < any > ('https://www.omdbapi.com/?i=tt0'+id+'&apikey=18fca18');
   }
 
+  getRecommendedMoviesByUserId(id: number): Observable<any>{
+    return this.http.get < any > ('https://localhost:7116/movies/' + id + '/byUserId');
+  }
+
 }
