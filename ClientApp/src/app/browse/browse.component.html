@@ -1,4 +1,4 @@
-<h1 id="tableLabel">Top 100 Movies</h1>
+<h1 id="tableLabel">Top 50 Movies</h1>
 
 <!-- <p *ngIf="!movies?.length"><em>Loading...</em></p> -->
 
@@ -8,6 +8,7 @@
     <tr>
       <th>Rank</th>
       <th>Title</th>
+      <th>Year</th>
       <th>Genre</th>
       <th>Rate</th>
       <th>Voters#</th>
@@ -17,14 +18,11 @@
     <tr *ngFor="let movie of filterdMovies; let i =index">
       <td>{{ i+1 }}</td>
       <td>{{ movie.movieTitle }}</td>
+      <td>{{ movie.movieYear }}</td>
       <td>{{ movie.movieGenres }}</td>
       <td>{{ movie.movieRating }}</td>
-      <td>{{ movie.movieNumberOfVoters }}</td>
+      <td>{{ movie.movieNumberOfVoters.toLocaleString() }}</td>
     </tr>
   </tbody>
 </table>
-
-
-
-
 

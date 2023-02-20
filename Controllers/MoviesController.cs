@@ -61,9 +61,6 @@ namespace movies_app.Controllers
             return View("Error!");
         }
 
-        
-
-
     }
 }
 

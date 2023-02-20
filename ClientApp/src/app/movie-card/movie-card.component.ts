@@ -21,13 +21,17 @@ export class MovieCardComponent implements OnInit {
 }
 
 
+
 interface Movie {
   movieId: number;
   movieTitle: string;
+  movieYear: number;
   movieGenres: string;
+  movieRating: number;
+  movieNumberOfVoters: number;
+  movieRank: number;
+  movieAltRank: number;
   movieImdbId: number;
   moviePlot: string;
   moviePosterLink: string;
-  // movieRating: number;
-  // movieNumberOfVoters: number;
 }

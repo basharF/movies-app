@@ -13,11 +13,14 @@ export class BrowseComponent implements OnInit {
   public movies$: Observable<Movie[]>;
   public movies: Movie[] = [];
   public filterdMovies: Movie[] = [];
+  public filterdMoviesPrimaryRank: Movie[] = [];
+  public filterdMoviesAltRank: Movie[] = [];
   genre: string;
 
   constructor(private movieSevice: MovieService, private route: ActivatedRoute) { 
-    this.movieSevice.getTopRatedMovies().subscribe(data => {
+    this.movieSevice.getAllMovies().subscribe(data => {
       this.movies = data;
+      //  console.log(data);
       
       this.route.queryParams.subscribe(param => {
         this.genre = param['genre'];
@@ -31,8 +34,10 @@ export class BrowseComponent implements OnInit {
   }
 
   applyFilter(){
-    this.filterdMovies = (this.genre)? this.movies.filter(m => m.movieGenres.includes(this.genre)).slice(0,100) :
-          this.movies.slice(0,100);
+    this.filterdMoviesPrimaryRank = this.movies.filter(m => m.movieRank !== null).sort((m1,m2) => m1.movieRank - m2.movieRank);
+    this.filterdMoviesAltRank = this.movies.filter(m => m.movieAltRank !== null).sort((m1,m2) => m1.movieAltRank - m2.movieAltRank);
+    this.filterdMovies = this.filterdMoviesPrimaryRank.concat(this.filterdMoviesAltRank);
+    this.filterdMovies = (this.genre)? this.filterdMovies.filter(m => m.movieGenres.includes(this.genre)).slice(0,50) :this.filterdMovies.slice(0,50);
   }
 
   // refreshStudentList() {
@@ -51,7 +56,10 @@ export class BrowseComponent implements OnInit {
 interface Movie {
   movieId: number;
   movieTitle: string;
+  movieYear: number;
   movieGenres: string;
   movieRating: number;
   movieNumberOfVoters: number;
+  movieRank: number;
+  movieAltRank: number;
 }

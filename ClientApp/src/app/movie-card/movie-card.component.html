@@ -1,7 +1,9 @@
+
+
 <mat-card class="card">
     <mat-card-header class="card-header">
         <mat-card-title>{{ movie.movieTitle }}</mat-card-title>
-        <mat-card-subtitle>{{ movie.movieGenres }}</mat-card-subtitle>
+        <mat-card-subtitle><div>{{ movie.movieGenres }} <br>{{ movie.movieRating }} ({{ movie.movieNumberOfVoters }} Votes)</div></mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="{{movie.moviePosterLink}}" alt="Poster" >
     <mat-card-content class="card-body">
