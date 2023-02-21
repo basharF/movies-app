@@ -5,10 +5,11 @@
         <mat-card-title>{{ movie.movieTitle }}</mat-card-title>
         <mat-card-subtitle><div>{{ movie.movieGenres }} <br>{{ movie.movieRating }} ({{ movie.movieNumberOfVoters }} Votes)</div></mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{movie.moviePosterLink}}" alt="Poster" >
+    <img mat-card-image src="{{movie.moviePosterLink}}" alt="Poster"  onerror="this.src = 'https://img.freepik.com/premium-vector/vector-illustration-blank-cinema-film-strip-roll-isolated-white-background_362366-229.jpg?w=2000'">
     <mat-card-content class="card-body">
         <p>
             {{ movie.moviePlot }}
         </p>
     </mat-card-content>
 </mat-card>
+

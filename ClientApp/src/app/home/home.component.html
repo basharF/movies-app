@@ -1,19 +1,19 @@
-<head> 
+<head>
     <style>
         /* Header/logo Title */
-.header {
-  padding: 180px;
-  text-align: center;
-}
+        .header {
+            padding: 180px;
+            text-align: center;
+        }
 
-/* Increase the font size of the heading */
-.header h1 {
-  font-size: 50px;
-}
+        /* Increase the font size of the heading */
+        .header h1 {
+            font-size: 50px;
+        }
 
-.header p {
-    font-size: 20px;
-}
+        .header p {
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -22,4 +22,25 @@
         <h2>Welcome to the moveis database</h2>
         <p>Browse more than <b>60K movies</b> all in one place!</p>
     </div>
-</body>  
+
+    <h2 *ngIf="watchedMovies.length">You watched</h2>
+    <div class="row">
+        <ng-container *ngFor="let m of watchedMovies; let i = index;">
+            <div class="col-md-3">
+                <app-movie-card [movie]="m"></app-movie-card>
+            </div>
+            <div *ngIf="(i+1) % 4 === 0" class="w-100"></div>
+        </ng-container>
+    </div>
+
+    <h2 *ngIf="suggestedMovies.length">Recommended based of your taste!</h2>
+    <div class="row">
+        <ng-container *ngFor="let m of suggestedMovies; let i = index;">
+            <div class="col-md-3">
+                <app-movie-card [movie]="m"></app-movie-card>
+            </div>
+            <div *ngIf="(i+1) % 4 === 0" class="w-100"></div>
+        </ng-container>
+    </div>
+
+</body>

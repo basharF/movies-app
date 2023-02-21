@@ -30,6 +30,14 @@ export class MovieService {
     return this.http.get < any[] > ('https://localhost:7116/movies');
   }
 
+  getWatchedMoviesByUserId(id: number): Observable<any>{
+    return this.http.get < any[] > ('https://localhost:7116/movies/' + id + '/watchedByUserId');
+  }
+
+  getSuggestedMoviesByUserId(id: number): Observable<any>{
+    return this.http.get < any[] > ('https://localhost:7116/movies/' + id + '/suggestedByUserId');
+  }
+
   getMovieById(id: number): Observable<any>{
     return this.http.get < any[] > ('https://localhost:7116/movies/' + id + '/byId');
   }

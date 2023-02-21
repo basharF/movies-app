@@ -28,6 +28,8 @@ namespace movies_app.Controllers
             _logger = logger;
             _configuration = configuration;
             _context = context;
+
+            this._context.Database.SetCommandTimeout(120);
         }
 
         [EnableCors("MyPolicy")]
@@ -36,6 +38,40 @@ namespace movies_app.Controllers
         {
             var movies = _context.Movies;
             return JsonConvert.SerializeObject(movies);
+        }
+
+        [EnableCors("MyPolicy")]
+        [HttpGet("{id}/watchedByUserId")]
+        public string getWatchedMoviesByUserId(int id)
+        {
+            FormattableString query = @$"SELECT TOP (10) [MOVIE_ID]
+                                        ,[MOVIE_TITLE]
+                                        ,[MOVIE_YEAR]
+                                        ,[MOVIE_GENRES]
+                                        ,[MOVIE_IMDB_ID]
+                                        ,[MOVIE_RATING]
+                                        ,[MOVIE_NUMBER_OF_VOTERS]
+                                        ,[MOVIE_RANK]
+                                        ,[MOVIE_ALT_RANK]
+                                    FROM MOVIES
+                                    WHERE EXISTS (
+                                        SELECT 1
+                                        FROM RATINGS
+                                        WHERE RATING_MOVIE_ID = MOVIES.MOVIE_ID  AND RATING_USER_ID = 93350
+                                    )
+                                        AND (MOVIE_RANK IS NOT NULL)
+                                    ORDER BY MOVIE_RANK";
+            var movie = _context.Movies.FromSql(query).ToList();;
+            return JsonConvert.SerializeObject(movie);
+        }
+
+        [EnableCors("MyPolicy")]
+        [HttpGet("{id}/suggestedByUserId")]
+        public string getSuggestedMoviesByUserId(int id)
+        {
+            FormattableString query = @$"EXEC getRecommendedMoviesByUserId @USER_ID = 93350";
+            var movie = _context.Movies.FromSql(query).ToList();;
+            return JsonConvert.SerializeObject(movie);
         }
 
         // [Microsoft.AspNetCore.Authorization.Authorize]
