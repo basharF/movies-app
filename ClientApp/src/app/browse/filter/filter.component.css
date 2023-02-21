@@ -1,7 +1,5 @@
 /* Add a black background color to the top navigation bar */
 .topnav {
-  overflow: visible;
-
     margin-top: 30px; 
     margin-bottom: 30px; 
     width: 100%;

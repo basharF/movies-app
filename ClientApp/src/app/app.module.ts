@@ -25,6 +25,7 @@ import { SearchComponent } from './search/search.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import {MatCardModule} from '@angular/material/card';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { RecommendationsComponent } from './recommendations/recommendations.comp
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

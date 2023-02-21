@@ -2,7 +2,7 @@
     <style>
         /* Header/logo Title */
         .header {
-            padding: 180px;
+            padding: 50px;
             text-align: center;
         }
 
@@ -19,9 +19,11 @@
 
 <body>
     <div class="header">
-        <h2>Welcome to the moveis database</h2>
+        <h1 class="title">Welcome to the moveis database</h1>
         <p>Browse more than <b>60K movies</b> all in one place!</p>
     </div>
+
+
 
     <h2 *ngIf="watchedMovies.length">You watched</h2>
     <div class="row">
@@ -29,8 +31,12 @@
             <div class="col-md-3">
                 <app-movie-card [movie]="m"></app-movie-card>
             </div>
-            <div *ngIf="(i+1) % 4 === 0" class="w-100"></div>
+            <!-- <div *ngIf="(i+1) % 4 === 0" class="w-100"></div> -->
         </ng-container>
+    </div>
+
+    <div class="spinner" *ngIf="!watchedMovies.length || !suggestedMovies.length">
+        <mat-spinner></mat-spinner>
     </div>
 
     <h2 *ngIf="suggestedMovies.length">Recommended based of your taste!</h2>

@@ -11,11 +11,20 @@
         </a>
     </div>
 </div> -->
+<div class="row">
 
 <mat-button-toggle-group class="topnav" *ngIf="genres$ | async as genres" name="fontStyle" aria-label="Font Style">
-    <mat-button-toggle routerLink="/browse">All</mat-button-toggle>
-    <mat-button-toggle *ngFor="let g of genres" routerLink="/browse" [queryParams]="{ genre: g.genreName }" >{{ g.genreName}}</mat-button-toggle>
+    <!-- <mat-button-toggle routerLink="/browse">All</mat-button-toggle> -->
+    <!-- <mat-button-toggle *ngFor="let g of genres; let i = index;" routerLink="/browse" [queryParams]="{ genre: g.genreName }" >{{g.genreName}}</mat-button-toggle> -->
+
+        <div class="col-md-1">
+        <mat-button-toggle routerLink="/browse">All</mat-button-toggle>
+
+            <ng-container *ngFor="let g of genres; let i = index;">
+                <mat-button-toggle routerLink="/browse"
+                    [queryParams]="{ genre: g.genreName }">{{g.genreName}}</mat-button-toggle>
+                <div *ngIf="(i+1) % 10 === 0" class="w-100"></div>
+            </ng-container>
+        </div>
 </mat-button-toggle-group>
-
-
-
+</div>

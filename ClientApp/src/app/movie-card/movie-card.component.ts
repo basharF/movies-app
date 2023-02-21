@@ -12,10 +12,10 @@ export class MovieCardComponent implements OnInit {
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
-    // this.movieService.getMovieDetails(this.movie.movieImdbId).subscribe(omdbMovie => {
-    //   this.movie.moviePlot = omdbMovie.Plot;
-    //   this.movie.moviePosterLink = omdbMovie.Poster;
-    // })
+    this.movieService.getMovieDetails(this.movie.movieImdbId).subscribe(omdbMovie => {
+      this.movie.moviePlot = omdbMovie.Plot;
+      this.movie.moviePosterLink = omdbMovie.Poster;
+    })
   }
 
 }

@@ -3,6 +3,9 @@
 <!-- <p *ngIf="!movies?.length"><em>Loading...</em></p> -->
 
 <app-filter></app-filter>
+<div class="spinner" *ngIf="!filterdMovies.length">
+  <mat-spinner></mat-spinner>
+</div>
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="filterdMovies.length">
   <thead>
     <tr>
